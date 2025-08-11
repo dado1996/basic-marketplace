@@ -41,7 +41,7 @@ export default function Checkout() {
                     <Button
                       variant="danger"
                       type="button"
-                      onClick={() => removeItem(item.id)}
+                      onClick={() => removeItem(item.id!)}
                     >
                       X
                     </Button>

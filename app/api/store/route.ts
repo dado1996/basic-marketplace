@@ -1,5 +1,6 @@
 import prisma from "@/lib/prisma";
-import { NextResponse } from "next/server";
+import { getServerSession } from "next-auth";
+import { NextRequest, NextResponse } from "next/server";
 
 export async function GET() {
   const result = await prisma.stores.findMany({
@@ -12,12 +13,21 @@ export async function GET() {
   return NextResponse.json(result);
 }
 
-export async function POST() {
-  await prisma.products.create({
+export async function POST(request: NextRequest) {
+  const session = await getServerSession();
+
+  if (!session || !session.user?.email) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+  const body = await request.json();
+  await prisma.stores.create({
     data: {
-      name: "",
-      price: 0,
-      storeId: 1,
+      name: body.name,
+      user: {
+        connect: {
+          email: session.user.email,
+        },
+      },
     },
   });
 

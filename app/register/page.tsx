@@ -103,12 +103,14 @@ export default function Register() {
               label="Client"
               name="role"
               value="CLIENTE"
+              onChange={handleChange}
             />
             <Form.Check
               type="radio"
               label="Business"
               name="role"
               value="BUSINESS"
+              onChange={handleChange}
             />
           </Form.Group>
           <Button variant="primary" type="submit">

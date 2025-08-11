@@ -17,7 +17,9 @@ export default function UserDropdown() {
       <Dropdown.Menu>
         {session.status === "authenticated" ? (
           <>
-            <Dropdown.Item>Profile</Dropdown.Item>
+            <Link className={styles.link} href={"/profile"}>
+              Profile
+            </Link>
             <Dropdown.Item onClick={() => signOut()}>Logout</Dropdown.Item>
           </>
         ) : (

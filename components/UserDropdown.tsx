@@ -8,7 +8,6 @@ import styles from "./UserDropDown.module.css";
 
 export default function UserDropdown() {
   const session = useSession();
-  console.log(session.data);
   return (
     <Dropdown>
       <Dropdown.Toggle variant="primary">
@@ -17,7 +16,9 @@ export default function UserDropdown() {
       <Dropdown.Menu>
         {session.status === "authenticated" ? (
           <>
-            <Dropdown.Item>Profile</Dropdown.Item>
+            <Link className={styles.link} href={"/profile"}>
+              Profile
+            </Link>
             <Dropdown.Item onClick={() => signOut()}>Logout</Dropdown.Item>
           </>
         ) : (

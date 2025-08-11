@@ -5,6 +5,7 @@ import Link from "next/link";
 import ButtonAddToCart from "./ButtonAddToCart";
 
 export default function ProductList({ products }: { products: Product[] }) {
+  console.log(products);
   return (
     <div className={styles.product_list}>
       {products.map((p) => (

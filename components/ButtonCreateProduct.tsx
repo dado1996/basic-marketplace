@@ -31,16 +31,21 @@ export default function ButtonCreateProduct() {
     }
   }, []);
 
-  function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
+  function handleChange(
+    event: React.ChangeEvent<
+      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+    >
+  ) {
     setNewProduct({
       ...newProduct,
       [event.target.name]: event.target.value,
     });
+    console.log(newProduct);
   }
 
   async function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
-    const result = await fetch("/api/store", {
+    const result = await fetch("/api/product", {
       method: "POST",
       body: JSON.stringify({
         ...newProduct,
@@ -49,6 +54,11 @@ export default function ButtonCreateProduct() {
         "Content-Type": "application/json",
       },
     });
+
+    if (result.ok) {
+      setModalShow(false);
+      return;
+    }
   }
 
   return (
@@ -86,11 +96,11 @@ export default function ButtonCreateProduct() {
             </Form.Group>
             <Form.Group>
               <Form.Label>Image</Form.Label>
-              <Form.Control type="url" name="img" />
+              <Form.Control type="url" name="img" onChange={handleChange} />
             </Form.Group>
             <Form.Group>
               <Form.Label>Store</Form.Label>
-              <Form.Select>
+              <Form.Select name="storeId" onChange={handleChange}>
                 <option>Select a store...</option>
                 {userStores.map((store) => (
                   <option key={store.id} value={store.id}>

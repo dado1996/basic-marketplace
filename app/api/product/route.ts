@@ -16,8 +16,29 @@ export async function GET(request: NextRequest) {
       id: true,
       name: true,
       price: true,
+      img: true,
     },
   });
 
   return NextResponse.json(result);
+}
+
+export async function POST(request: NextRequest) {
+  const { name, price, description, storeId, img } = await request.json();
+  await prisma.products.create({
+    data: {
+      name,
+      description,
+      price: parseFloat(price),
+      img,
+      storeId: parseInt(storeId),
+    },
+    select: {
+      name: true,
+      price: true,
+      img: true,
+    },
+  });
+
+  return NextResponse.json({ message: "Created" });
 }

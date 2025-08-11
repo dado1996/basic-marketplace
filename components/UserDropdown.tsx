@@ -8,7 +8,6 @@ import styles from "./UserDropDown.module.css";
 
 export default function UserDropdown() {
   const session = useSession();
-  console.log(session.data);
   return (
     <Dropdown>
       <Dropdown.Toggle variant="primary">

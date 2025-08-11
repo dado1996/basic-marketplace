@@ -1,0 +1,15 @@
+.nav {
+  display: flex;
+  background-color: #1d4ed8;
+  color: #fff;
+  height: 70px;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.text_logo {
+  color: #fff;
+  margin-left: 15px;
+  text-decoration: none;
+}

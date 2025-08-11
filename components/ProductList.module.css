@@ -1,0 +1,18 @@
+.product_list {
+  width: 100%;
+  display: grid;
+  margin: 0 auto;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  padding: calc(var(--gap) * 1.5);
+  box-sizing: border-box;
+}
+
+.product_card {
+  background: linear-gradient(180deg, var(--card-bg), var(--card-bg));
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(15, 15, 15, 0.06);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
